@@ -1,15 +1,21 @@
 from sqlalchemy import create_engine
 from sqlalchemy.sql import text
+from sqlalchemy_utils import database_exists, create_database
 from constants import *
 from config import DATABASE_LOCATION
 from logs import logger
-
 
 createEngine = create_engine(DATABASE_LOCATION)
 
 
 def create_db():
-    pass
+    db_exists = database_exists(createEngine.url)
+    if not db_exists:
+        create_database(createEngine.url)
+        logger.info("Creando la Base de Datos")
+    else:
+        logger.info("La Base de Datos ya existe")
+    
 
 
 def create_table():
@@ -39,8 +45,7 @@ def create_table():
 
 if __name__ == "__main__":
     try:
-        #Aqui va la funcion de crear la base de datos.
-        #create_db()
+        create_db()
         create_table()  
     except(Exception) as e:
         logger.error(e)

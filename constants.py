@@ -1,11 +1,14 @@
 from pathlib import Path
 
+
+
+
 BASE_FILE_DIR = Path('/tmp')
 ROOT_DIR = Path().resolve()
 #parent atributo que hace referencia al directorio principal.
 SQL_DIR = ROOT_DIR / "sql"
 CATEGORY_DIR = ROOT_DIR / "categories"
-
+MERGE_DF = "{ROOT_DIR}/categories/merge"
 
 RAW_TABLE_NAME = "raw"
 CATEGORY_TABLE_NAME = "records_category"
